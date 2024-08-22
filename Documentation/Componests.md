@@ -1,4 +1,4 @@
-Components:
+## Components:
 - ESP32 microcontroller
 - Capacitive soil moisture sensor
 - 3 LEDs (Red, Green and Blue)

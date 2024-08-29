@@ -1,6 +1,6 @@
 import base64
 from io import BytesIO
-from flask import Flask, render_template, redirect, url_for, request, session, flash
+from flask import Flask, render_template
 
 app = Flask(__name__)
 app.run(debug=True)

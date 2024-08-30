@@ -68,8 +68,7 @@ async def main(client):
         print('Error')
         reboot_esp()
 
-    for coroutine in (up, messages):
-        asyncio.create_task(coroutine(client))
+    asyncio.create_task(up(client))
 
     while True:
         await asyncio.sleep(5)
@@ -94,13 +93,13 @@ async def main(client):
                 blue_led.on()
                 info = "Wet"
 
-            message = {"soil_moisture": m, 
+            message = {"moisture": m, 
                        "timestamp": time.time(), 
                        "level": info}
             
             json_message = json.dumps(message)
             print("Published soil moisture: ", json_message)
-            await client.publish('plant_topic', str(json_message), qos = 1)
+            await client.publish('plant/peperomia/json', str(json_message), qos = 1)
             time.sleep(5)
         except KeyboardInterrupt:
             red_led.off()
@@ -108,32 +107,6 @@ async def main(client):
             blue_led.off()
             break
         await asyncio.sleep(5)
-
-
-# while True:
-#     try:
-#         soil.read()
-#         time.sleep(2)
-#         m = (max_moisture-soil.read())*100/(max_moisture-min_moisture)
-#         print(m)
-#         if red_treshold > m:
-#             red_led.on()
-#             green_led.off()
-#             blue_led.off()
-#         elif green_treshold > m and m > red_treshold:
-#             red_led.off()
-#             green_led.on()
-#             blue_led.off()
-#         else:
-#             red_led.off()
-#             green_led.off()
-#             blue_led.on()
-#         time.sleep(5)
-#     except KeyboardInterrupt:
-#         red_led.off()
-#         green_led.off()
-#         blue_led.off()
-#         break
 
 config["queue_len"] = 1  # Use event interface with default queue size
 MQTTClient.DEBUG = True  # Optional: print diagnostic messages

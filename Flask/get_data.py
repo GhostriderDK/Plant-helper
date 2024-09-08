@@ -8,7 +8,7 @@ def get_neon_pothos_data(number_of_rows):
         temperatures = []
         moisture_level = []
         try:
-            conn = sqlite3.connect("database/data.db")
+            conn = sqlite3.connect("databases/data.db")
             cur = conn.cursor()
             cur.execute(query)
             rows = cur.fetchmany(number_of_rows)
@@ -29,12 +29,12 @@ get_neon_pothos_data(10)
 
 def get_peperomia_data(number_of_rows):
     while True:
-        query = """SELECT * FROM bedroom ORDER BY datetime DESC;"""
+        query = """SELECT * FROM peperomia ORDER BY datetime DESC;"""
         datetimes = []
         temperatures = []
         moisture_level = []
         try:
-            conn = sqlite3.connect("database/data.db")
+            conn = sqlite3.connect("databases/data.db")
             cur = conn.cursor()
             cur.execute(query)
             rows = cur.fetchmany(number_of_rows)

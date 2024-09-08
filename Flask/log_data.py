@@ -7,14 +7,14 @@ print("subscribe mqtt script running")
 
 
 def peperomia_message(client, userdata, message):
-    query = """INSERT INTO bad (datetime, temperature, humidity, battery) VALUES(?, ?, ?, ?)"""
+    query = """INSERT INTO bad (datetime, temperature, soil, info) VALUES(?, ?, ?, ?)"""
     now = datetime.now()
     now = now.strftime("%d/%m/%y %H:%M:%S")
     peperomia_data = json.loads(message.payload.decode())
     data = (now, peperomia_data['soil'], peperomia_data['timestamp'], peperomia_data['info'])
 
     try:
-        conn = sqlite3.connect("database/data.db")
+        conn = sqlite3.connect("databases/data.db")
         cur = conn.cursor()
         cur.execute(query, data)
         conn.commit()
@@ -30,14 +30,14 @@ def peperomia_message(client, userdata, message):
 
 
 def neon_pothos_message(client, userdata, message):
-    query = """INSERT INTO bedroom (datetime, temperature, humidity, battery) VALUES(?, ?, ?, ?)"""
+    query = """INSERT INTO peperomia (datetime, temperature, soil, info) VALUES(?, ?, ?, ?)"""
     now = datetime.now()
     now = now.strftime("%d/%m/%y %H:%M:%S")
     neon_pothos_data = json.loads(message.payload.decode())
     data = (now, neon_pothos_data['soil'], neon_pothos_data['timestamp'], neon_pothos_data['info'])
     
     try:
-        conn = sqlite3.connect("database/data.db")
+        conn = sqlite3.connect("databases/data.db")
         cur = conn.cursor()
         cur.execute(query, data)
         conn.commit()

@@ -3,6 +3,7 @@ from machine import Pin, ADC
 import time
 import json
 import asyncio
+import network
 
 # LED config
 red_led_pin = 4
@@ -18,24 +19,24 @@ blue_led = Pin(blue_led_pin, Pin.OUT)
 soil = ADC(Pin(35))
 m = 100
 
-min_moisture=0
-max_moisture=4095
+min_moisture = 0
+max_moisture = 4095
 
-soil.atten(ADC.ATTN_11DB)       #Full range: 3.3v
-soil.width(ADC.WIDTH_12BIT)     #range 0 to 4095
+soil.atten(ADC.ATTN_11DB)       # Full range: 3.3v
+soil.width(ADC.WIDTH_12BIT)     # Range 0 to 4095
 
 red_treshold = 30
 green_treshold = 80
 
-# Wifi config
-config['server'] = '52.236.38.161'  # Change to suit
-config['ssid'] = 'iot'
-config['wifi_pw'] = 'gruppe06'
+# WiFi config
+config['server'] = '192.168.1.220'  # Change to suit
+config['ssid'] = 'Fly by requested'
+config['wifi_pw'] = 'P@tern!sFull'
 
-#other config
+# Other config
 info = None
 
-# test leds at startup
+# Test LEDs at startup
 red_led.on()
 time.sleep(1)
 red_led.off()
@@ -58,14 +59,32 @@ async def up(client):  # Respond to connectivity being (re)established
     while True:
         await client.up.wait()  # Wait on an Event
         client.up.clear()
-        await client.subscribe('plant_topic', 1)  # renew subscriptions
+        await client.subscribe('plant_topic', 1)  # Renew subscriptions
 
+async def connect_wifi():
+    wlan = network.WLAN(network.STA_IF)
+    wlan.active(True)
+    wlan.connect(config['ssid'], config['wifi_pw'])
+    max_attempts = 10
+    attempt = 0
+    while not wlan.isconnected() and attempt < max_attempts:
+        print(f"Connecting to WiFi... Attempt {attempt + 1}")
+        await asyncio.sleep(1)
+        attempt += 1
+    if wlan.isconnected():
+        print("Connected to WiFi")
+    else:
+        print("Failed to connect to WiFi")
+        reboot_esp()
 
 async def main(client):
+    await connect_wifi()
     try:
+        print("Connecting to MQTT broker...")
         await client.connect()
-    except:
-        print('Error')
+        print("Connected to MQTT broker")
+    except Exception as e:
+        print(f"Error connecting to MQTT broker: {e}")
         reboot_esp()
 
     asyncio.create_task(up(client))
@@ -75,7 +94,7 @@ async def main(client):
         try:
             soil.read()
             time.sleep(2)
-            m = (max_moisture-soil.read())*100/(max_moisture-min_moisture)
+            m = (max_moisture - soil.read()) * 100 / (max_moisture - min_moisture)
             print(m)
             if red_treshold > m:
                 red_led.on()
@@ -93,19 +112,23 @@ async def main(client):
                 blue_led.on()
                 info = "Wet"
 
-            message = {"moisture": m, 
-                       "timestamp": time.time(), 
-                       "level": info}
+            message = {
+                "moisture": m,
+                "timestamp": time.time(),
+                "level": info
+            }
             
             json_message = json.dumps(message)
             print("Published soil moisture: ", json_message)
-            await client.publish('plant/peperomia/json', str(json_message), qos = 1)
+            await client.publish('plant/peperomia/json', str(json_message), qos=1)
             time.sleep(5)
         except KeyboardInterrupt:
             red_led.off()
             green_led.off()
             blue_led.off()
             break
+        except Exception as e:
+            print(f"Error in main loop: {e}")
         await asyncio.sleep(5)
 
 config["queue_len"] = 1  # Use event interface with default queue size
@@ -115,7 +138,3 @@ try:
     asyncio.run(main(client))
 finally:
     client.close()  # Prevent LmacRxBlk:1 errors
-
-
-
-

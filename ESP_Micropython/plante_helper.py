@@ -29,9 +29,9 @@ red_treshold = 30
 green_treshold = 80
 
 # WiFi config
-config['server'] = '192.168.1.220'  # Change to suit
-config['ssid'] = 'Fly by requested'
-config['wifi_pw'] = 'P@tern!sFull'
+config['server'] = '#######'  # Change to suit
+config['ssid'] = '##########'
+config['wifi_pw'] = '##########'
 
 # Other config
 info = None

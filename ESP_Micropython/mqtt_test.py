@@ -4,8 +4,8 @@ import uasyncio as asyncio
 
 # WiFi config
 config['server'] = '0.0.0.0'  # Change to your PC's local IP address
-config['ssid'] = 'Fly by requested'
-config['wifi_pw'] = 'P@tern!sFull'
+config['ssid'] = '##########'
+config['wifi_pw'] = '##########'
 
 async def connect_wifi():
     wlan = network.WLAN(network.STA_IF)

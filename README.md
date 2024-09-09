@@ -44,6 +44,3 @@ The script runs in an infinite loop, continuously reading the moisture level and
 
 ## Additional Dependencies
 - `sqlite3` module: Provides a lightweight disk-based database that doesn’t require a separate server process and allows access to the database using a nonstandard variant of the SQL query language.
-
-
-

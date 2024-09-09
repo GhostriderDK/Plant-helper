@@ -29,9 +29,9 @@ red_treshold = 30
 green_treshold = 80
 
 # WiFi config
-config['server'] = '#######'  # Change to suit
-config['ssid'] = '##########'
-config['wifi_pw'] = '##########'
+config['server'] = '#######'  # Change to mqtt server ip
+config['ssid'] = '##########' # Change to wifi ssid
+config['wifi_pw'] = '##########' # Change to wifi password
 
 # Other config
 info = None

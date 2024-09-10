@@ -8,11 +8,10 @@ from matplotlib.patches import FancyBboxPatch
 app = Flask(__name__)
 app.run(debug=True)
 
-datapoints = 1000
+datapoints = 20000
 num_ticks = 10
 
 def peperomia_data(datapoints, num_ticks):
-    # Assuming get_peperomia_data is defined elsewhere and returns the correct data
     timestamps, soil, time, info = get_peperomia_data(datapoints)
    
     fig = Figure()
@@ -28,18 +27,10 @@ def peperomia_data(datapoints, num_ticks):
     ax.tick_params(axis="y", colors="blue")
     ax.spines["left"].set_color("blue")
     ax.grid(axis='y', linestyle='--')
-    
-    # Ensure there are at most 10 ticks on the x-axis
     num_ticks = min(num_ticks, len(timestamps))
     tick_positions = range(0, len(timestamps), max(1, len(timestamps) // num_ticks))
     ax.set_xticks(tick_positions)
-    
-    # Set the figure background color
     fig.patch.set_facecolor("cyan")
-
-    # Create a FancyBboxPatch with rounded corners
-    bbox = FancyBboxPatch((0, 0), 1, 1, boxstyle="round,pad=0.1", edgecolor="none", facecolor="white", transform=ax.transAxes, zorder=-1)
-    ax.add_patch(bbox)
     
     buf = BytesIO()
     fig.savefig(buf, format="png")

@@ -4,52 +4,68 @@
 <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
 {% endblock %}
 
-{% block title %} {% endblock %}
+{% block overseer %}
+<a class="navbar-brand" href="#"> <em>OverSeer</em> </a>
+{% endblock %}
 
-{% block content %} 
-<h1>Plant Overview</h1>
+
+{% block nav %}
+<li class="nav-item px-2">
+    <a class="nav-link" href="{{ url_for('overview') }}" style="color: white;"><strong>Overview</strong></a>
+</li>
+
+<li class="nav-item px-2">
+    <a class="nav-link" href="{{ url_for('confighost') }}" style="color: white;"><strong>Configuration</strong></a>
+</li>
+{% endblock %}
+
+
+{% block content %}
+<h1>{% block title %} Plant Helper Overview {% endblock %}</h1>
 <div class="container my-5">
     <div class="row">
         <div class="col-3">
             <h3 class="text-center">
-                System Status<br>
-                <strong>{{ level }}</strong> <span class="status-indicator {{ system_status_class }}"></span>
+                Plant overview<br> 
             </h3>
             <hr>
             <h4>Stats:</h4>
             <table class="table table-striped text-start">
-                <tr>
-                    <td>Last check time:</td>
-                    <td class="text-end">{{ last_check_time }}</td>
-                </tr>
-                <tr>
-                    <td>Total Files Checked:</td>
-                    <td class="text-end">{{ filecount }}</td>
-                </tr>
-                <tr>
-                    <td>Conflicts:</td>
-                    <td class="text-end">{{ conflicts }}</td>
-                </tr>
-                <tr>
-                    <td>Low Level Conflicts:</td>
-                    <td class="text-end">{{ low_level_conflicts }}</td>
-                </tr>
-                <tr>
-                    <td>High Level Conflicts:</td>
-                    <td class="text-end">{{ high_level_conflicts }}</td>
-                </tr>
+                <thead>
+                    <tr>
+                        <th colspan="2">Peperomia</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Level: <strong>{{ peperomia_level }}</strong></td>
+                        <td class="text-end"><span class="status-indicator {{ peperomia_class }}"></span></td>
+                    </tr>
+                    <tr>
+                        <td>Last watering <strong>{{ last_water_peperomia }}</strong></td>
+                        <td class="text-end"></td>
+                    </tr>
+                </tbody>
+                <thead>
+                    <tr>
+                        <th colspan="2">Neon Pothos</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Level: <strong>{{ neonpothos_level }}</strong></td>
+                        <td class="text-end"><span class="status-indicator {{ neonpothos_class }}"></span></td>
+                    </tr>
+                    <tr>
+                        <td>Last watering <strong>{{ last_water_neonpothos }}</strong></td>
+                        <td class="text-end"></td>
+                    </tr>
+                </tbody>
             </table>
         </div>
         <div class="col-9">
             <h3> Conflicts </h3>
-          
         </div>
-        <form method="post">
-        <div class="btn-group" role="group" aria-label="Actions">
-            <button id="watchdogButton" type="submit" class="btn btn-primary" name="action" value="watchdogExecute">Execute watchdog</button>
-        </div>
-        </form>
     </div>
 </div>
-
 {% endblock %}

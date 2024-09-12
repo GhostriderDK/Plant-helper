@@ -37,4 +37,10 @@ def get_peperomia_level():
     else:
         pass
 
-
+def get_neonpothos_level(timestamps="", soil = 50, time = 1, info = ["Moist", "Moist"]):
+    timestamps, soil, time, inf = get_neon_pothos_data(10)
+    
+    if info.count(info[0]) == len(info):
+        return info[0]
+    else:
+        pass

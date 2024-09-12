@@ -5,8 +5,9 @@ def get_neon_pothos_data(number_of_rows):
     while True:
         query = """SELECT * FROM neonpothos ORDER BY datetime DESC;"""
         datetimes = []
-        temperatures = []
         moisture_level = []
+        timestamp = []
+        level = []
         try:
             conn = sqlite3.connect("databases/data.db")
             cur = conn.cursor()
@@ -14,9 +15,10 @@ def get_neon_pothos_data(number_of_rows):
             rows = cur.fetchmany(number_of_rows)
             for row in reversed(rows):
                 datetimes.append(row[0])
-                temperatures.append(row[1])
-                moisture_level.append(row[2]) 
-            return datetimes, temperatures, moisture_level          
+                moisture_level.append(row[1])
+                timestamp.append(row[2]) 
+                level.append(row[3]) 
+            return datetimes, moisture_level, timestamp, level          
         except sqlite3.Error as sql_e:
             print(f"sqlite error occurred: {sql_e}")
             conn.rollback()

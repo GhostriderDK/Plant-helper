@@ -1,4 +1,4 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, url_for, request, redirect    
 import backend as bk
 
 app = Flask(__name__)
@@ -13,14 +13,22 @@ def home():
 
 @app.route('/overview')
 def overview():
-    level = bk.get_peperomia_level()
-    if level == "Wet":
-        system_status_class = "Wet"
-    elif level == "Moist":
-        system_status_class = "Moist"
-    elif level == "Dry":
-        system_status_class = "Dry"
-    return render_template('overview.html', level=level, system_status_class=system_status_class)
+    peperomia_level = bk.get_peperomia_level()
+    if peperomia_level == "Wet":
+        peperomia_class = "wet"
+    elif peperomia_level == "Moist":
+        peperomia_class = "moist"
+    elif peperomia_level == "Dry":
+        peperomia_class = "dry"
+
+    neonpothos_level = bk.get_neonpothos_level()
+    if neonpothos_level == "Wet":
+        neonpothos_class = "wet"
+    elif neonpothos_level == "Moist":
+        neonpothos_class = "moist"
+    elif neonpothos_level == "Dry":
+        neonpothos_class = "dry"
+    return render_template('overview.html', peperomia_level=peperomia_level, neonpothos_level=neonpothos_level, peperomia_class=peperomia_class, neonpothos_class=neonpothos_class)
 
 @app.route('/moisture-graph')
 def moisture_graph():

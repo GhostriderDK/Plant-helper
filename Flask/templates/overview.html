@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+{% endblock %}
+
+{% block title %} {% endblock %}
+
+{% block content %} 
+<h1>Plant Overview</h1>
+<div class="container my-5">
+    <div class="row">
+        <div class="col-3">
+            <h3 class="text-center">
+                System Status<br>
+                <strong>{{ level }}</strong> <span class="status-indicator {{ system_status_class }}"></span>
+            </h3>
+            <hr>
+            <h4>Stats:</h4>
+            <table class="table table-striped text-start">
+                <tr>
+                    <td>Last check time:</td>
+                    <td class="text-end">{{ last_check_time }}</td>
+                </tr>
+                <tr>
+                    <td>Total Files Checked:</td>
+                    <td class="text-end">{{ filecount }}</td>
+                </tr>
+                <tr>
+                    <td>Conflicts:</td>
+                    <td class="text-end">{{ conflicts }}</td>
+                </tr>
+                <tr>
+                    <td>Low Level Conflicts:</td>
+                    <td class="text-end">{{ low_level_conflicts }}</td>
+                </tr>
+                <tr>
+                    <td>High Level Conflicts:</td>
+                    <td class="text-end">{{ high_level_conflicts }}</td>
+                </tr>
+            </table>
+        </div>
+        <div class="col-9">
+            <h3> Conflicts </h3>
+          
+        </div>
+        <form method="post">
+        <div class="btn-group" role="group" aria-label="Actions">
+            <button id="watchdogButton" type="submit" class="btn btn-primary" name="action" value="watchdogExecute">Execute watchdog</button>
+        </div>
+        </form>
+    </div>
+</div>
+
+{% endblock %}

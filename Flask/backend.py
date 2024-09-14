@@ -37,6 +37,28 @@ def get_peperomia_level():
     else:
         pass
 
+def get_current_pct_peperomia():
+    timestamps, soil, time, inf = get_peperomia_data(10)
+    avg_soil = sum(soil) / len(soil)
+    
+    avg_soil = round(avg_soil, 0)
+    
+    return avg_soil 
+
+def peperomia_watering(data_points=1000):
+    timestamps, soil, time, info = get_peperomia_data(data_points)
+    increase_threshold = 10  # Define the threshold for increase
+    last_watering_timestamp = None  # Initialize to store the last detected watering timestamp
+
+    for i in range(1, len(soil)):
+        if soil[i] - soil[i - 1] > increase_threshold:
+            last_watering_timestamp = timestamps[i]
+
+    return last_watering_timestamp
+    
+    
+    
+
 def get_neonpothos_level(timestamps="", soil = 50, time = 1, info = ["Moist", "Moist"]):
     timestamps, soil, time, inf = get_neon_pothos_data(10)
     

@@ -7,12 +7,16 @@ app.run(debug=True)
 datapoints = 20000
 num_ticks = 10
 
+last_log = None
+
 @app.route('/')
 def home():
     return render_template('home.html')
 
 @app.route('/overview')
 def overview():
+    global last_log
+
     peperomia_level = bk.get_peperomia_level()
     if peperomia_level == "Wet":
         peperomia_class = "wet"
@@ -20,7 +24,16 @@ def overview():
         peperomia_class = "moist"
     elif peperomia_level == "Dry":
         peperomia_class = "dry"
-
+    
+    avg_peperomia = bk.get_current_pct_peperomia()
+    
+    watering_timestamp = bk.peperomia_watering()
+    if watering_timestamp != None:
+        last_water_peperomia = watering_timestamp
+        last_log = watering_timestamp
+    else:
+        last_water_peperomia = last_log
+          
     neonpothos_level = bk.get_neonpothos_level()
     if neonpothos_level == "Wet":
         neonpothos_class = "wet"
@@ -28,7 +41,8 @@ def overview():
         neonpothos_class = "moist"
     elif neonpothos_level == "Dry":
         neonpothos_class = "dry"
-    return render_template('overview.html', peperomia_level=peperomia_level, neonpothos_level=neonpothos_level, peperomia_class=peperomia_class, neonpothos_class=neonpothos_class)
+    return render_template('overview.html', peperomia_level=peperomia_level, neonpothos_level=neonpothos_level,
+                            peperomia_class=peperomia_class, neonpothos_class=neonpothos_class, avg_peperomia=avg_peperomia, last_water_peperomia=last_water_peperomia)
 
 @app.route('/moisture-graph')
 def moisture_graph():

@@ -29,13 +29,20 @@ The script runs in an infinite loop, continuously reading the moisture level and
 - Blue LED connected to pin 17
 - Soil moisture sensor connected to ADC pin 35
 
-## New Features
-- Added MQTT capability to send soil moisture, temperature, and humidity data to a remote server.
-- Implemented a Flask web application with a SQL database to visualize the data received through MQTT.
-- Enhanced the LED control logic to include moisture thresholds.
-- Integrated the Flask web application to visualize the logged data.
+## Features
+- MQTT capability to send soil moisture, temperature, and humidity data to a remote server.
+- Flask web application with a SQL database to visualize the data received through MQTT.
+- LED control logic to include moisture thresholds.
+- Flask web application with visualization of the logged data.
 
-## Future Enhancements
+## New Features
+- Added an overview site to give a important info fast without having to look on the graph.
+- - includes current rounded percentage of moisture in the soil, timestamp for last watering and the current level: wet, moist or dry. with a coloured circle to make it clearer
+- - Watering autodetection and timestamp keeping, so even if the last watering isn't within the scanned dataset pulled from the database it will still be displayed in the overview
+
+
+## Future Enhancements in order of implementation priority
+- Add a list of the last waterings in format [(plant) watered (timestamp) from (lower percentage) -> (upper percentage)], on the right side of overview
 - Add support for remote notifications via email or SMS when soil moisture levels are critical.
 - Implement a calibration routine for the soil moisture sensor to improve accuracy.
 - Add a battery power option with low-power optimizations for the ESP32.

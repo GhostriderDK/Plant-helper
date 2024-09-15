@@ -1,0 +1,1 @@
+this is the kicad project for this repo

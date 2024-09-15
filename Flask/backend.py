@@ -22,7 +22,7 @@ def peperomia_data(datapoints, num_ticks):
     num_ticks = min(num_ticks, len(timestamps))
     tick_positions = range(0, len(timestamps), max(1, len(timestamps) // num_ticks))
     ax.set_xticks(tick_positions)
-    fig.patch.set_facecolor("cyan")
+    fig.patch.set_facecolor("white")
     
     buf = BytesIO()
     fig.savefig(buf, format="png")

@@ -21,7 +21,7 @@
 
 
 {% block content %}
-<h1>{% block title %} Plant Helper Overview {% endblock %}</h1>
+<h1 style="text-align: left;">{% block title %} Plant Helper Overview {% endblock %}</h1>
 <div class="container my-5">
     <div class="row">
         <div class="col-3">
@@ -33,7 +33,7 @@
             <table class="table table-striped text-start" style="border-radius: 20px;">
                 <thead>
                     <tr>
-                        <th colspan="2">Peperomia</th>
+                        <th colspan="2">Watermelon Peperomia</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -41,7 +41,7 @@
                         <td>Level: <strong>{{ peperomia_level }}</strong></td>
                         <td class="text-end"><span class="status-indicator {{ peperomia_class }}"></span></td>
                     </tr>
-                    <tr></tr>
+                    <tr>
                         <td>current moisture pct:  <strong>{{ avg_peperomia }} %</strong></td>
                         <td class="text-end"></td>
                     </tr>
@@ -69,7 +69,7 @@
         </div>
         <div class="col-9">
             <h3> Graph </h3>
-            <img class="img-fluid float-left" src='data:image/png;base64,{{peperomia_graph}}' style="border-radius: 20px;"/>
+            <img class="img-fluid float-left" src='data:image/png;base64,{{peperomia_graph}}' style="border-radius: 20px; border: 2px solid #bebebe;"/>
         </div>
     </div>
 </div>

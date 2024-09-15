@@ -2,7 +2,7 @@ from flask import Flask, render_template, url_for, request, redirect
 import backend as bk
 
 app = Flask(__name__)
-app.run(debug=True)
+
 
 datapoints = 20000
 num_ticks = 10
@@ -49,3 +49,6 @@ def moisture_graph():
     peperomia_graph = bk.peperomia_data(datapoints, num_ticks)
     return render_template('moisture_graph.html', peperomia_graph=peperomia_graph)
     # return render_template('moisture_graph.html', image_base64=image_base64)
+
+if __name__ == '__main__':
+    app.run(host="0.0.0.0", port=5000, debug=True)

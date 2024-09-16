@@ -13,6 +13,8 @@ last_log = None
 def home():
     return render_template('home.html')
 
+################## Plant monitoring ##################
+
 @app.route('/overview')
 def overview():
     global last_log
@@ -48,9 +50,8 @@ def overview():
 def moisture_graph():
     peperomia_graph = bk.peperomia_data(datapoints, num_ticks)
     return render_template('moisture_graph.html', peperomia_graph=peperomia_graph)
-    # return render_template('moisture_graph.html', image_base64=image_base64)
 
-@app.route('/overview-graph')
+@app.route('/overview-plant')
 def overview_graph():
     peperomia_graph = bk.peperomia_data(datapoints, num_ticks)
     global last_log
@@ -81,6 +82,18 @@ def overview_graph():
         neonpothos_class = "dry"
     return render_template('overview_graph.html', peperomia_graph=peperomia_graph, peperomia_level=peperomia_level, neonpothos_level=neonpothos_level,
                             peperomia_class=peperomia_class, neonpothos_class=neonpothos_class, avg_peperomia=avg_peperomia, last_water_peperomia=last_water_peperomia)
+
+
+################## Smart home automation ##################
+
+
+@app.route('/air-quality-overview')
+def air_quality_overview():
+    air_quality_graph = bk.get_air_data(datapoints, num_ticks)
+    return render_template('air_quality_overview.html', air_quality_graph=air_quality_graph)
+
+
+################## flask run ##################
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000, debug=True)

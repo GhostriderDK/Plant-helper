@@ -1,0 +1,22 @@
+{% extends 'smarthome_base.html' %}
+
+{% block title %} Devices {% endblock %}
+{% block content %} 
+<div class="device-control">
+    <h2>Device Control</h2>
+    <form action="/control_device" method="post">
+        <label for="device">Choose a device:</label>
+        <select id="device" name="device">
+            <option value="light">Light</option>
+            <option value="thermostat">Thermostat</option>
+            <option value="fan">Fan</option>
+        </select>
+        <label for="action">Action:</label>
+        <select id="action" name="action">
+            <option value="on">On</option>
+            <option value="off">Off</option>
+        </select>
+        <button type="submit">Submit</button>
+    </form>
+</div>
+{% endblock %}

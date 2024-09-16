@@ -1,0 +1,19 @@
+{% extends 'smarthome_base.html' %}
+
+{% block title %} Devices {% endblock %}
+{% block content %} 
+<div class="device-settings">
+    <h2>Device Settings</h2>
+    <form action="/update_settings" method="post">
+        <label for="device-settings">Choose a device:</label>
+        <select id="device-settings" name="device-settings">
+            <option value="light">Light</option>
+            <option value="thermostat">Thermostat</option>
+            <option value="fan">Fan</option>
+        </select>
+        <label for="setting">Setting:</label>
+        <input type="text" id="setting" name="setting" placeholder="Enter setting value">
+        <button type="submit">Update</button>
+    </form>
+</div>
+{% endblock %}

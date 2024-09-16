@@ -11,7 +11,7 @@ last_log = None
 
 @app.route('/')
 def home():
-    return render_template('home.html')
+    return render_template('plant_home.html')
 
 ################## Plant monitoring ##################
 
@@ -80,12 +80,23 @@ def overview_graph():
         neonpothos_class = "moist"
     elif neonpothos_level == "Dry":
         neonpothos_class = "dry"
-    return render_template('overview_graph.html', peperomia_graph=peperomia_graph, peperomia_level=peperomia_level, neonpothos_level=neonpothos_level,
+    return render_template('overview-graph.html', peperomia_graph=peperomia_graph, peperomia_level=peperomia_level, neonpothos_level=neonpothos_level,
                             peperomia_class=peperomia_class, neonpothos_class=neonpothos_class, avg_peperomia=avg_peperomia, last_water_peperomia=last_water_peperomia)
 
 
 ################## Smart home automation ##################
 
+@app.route('/smart-home')
+def smart_home():
+    return render_template('smarthome_home.html')
+
+@app.route('/device-control')
+def devices():
+    return render_template('smarthome_devices.html')
+
+@app.route('/settings')
+def settings():
+    return render_template('smarthome_settings.html')
 
 @app.route('/air-quality-overview')
 def air_quality_overview():

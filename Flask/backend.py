@@ -30,7 +30,7 @@ def peperomia_data(datapoints, num_ticks):
     return data
 
 def get_peperomia_level():
-    timestamps, soil, time, info = get_peperomia_data(10)
+    timestamps, soil, time, info = get_peperomia_data(1)
     
     if info.count(info[0]) == len(info):
         return info[0]
@@ -38,7 +38,7 @@ def get_peperomia_level():
         pass
 
 def get_current_pct_peperomia():
-    timestamps, soil, time, inf = get_peperomia_data(10)
+    timestamps, soil, time, inf = get_peperomia_data(3)
     avg_soil = sum(soil) / len(soil)
     
     avg_soil = round(avg_soil, 0)

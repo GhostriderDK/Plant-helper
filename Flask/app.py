@@ -1,4 +1,5 @@
-from flask import Flask, render_template, url_for, request, redirect    
+from transformers import pipeline
+from flask import Flask, render_template, request, jsonify     
 import backend as bk
 
 app = Flask(__name__)
@@ -6,6 +7,7 @@ app = Flask(__name__)
 
 datapoints = 20000
 num_ticks = 10
+chatbot = pipeline('text-generation', model='gpt2', device=-1, clean_up_tokenization_spaces=True)
 
 last_log = None
 
@@ -79,8 +81,18 @@ def overview_graph():
         neonpothos_class = "moist"
     elif neonpothos_level == "Dry":
         neonpothos_class = "dry"
-    return render_template('overview_graph.html', peperomia_graph=peperomia_graph, peperomia_level=peperomia_level, neonpothos_level=neonpothos_level,
+    return render_template('overview-graph.html', peperomia_graph=peperomia_graph, peperomia_level=peperomia_level, neonpothos_level=neonpothos_level,
                             peperomia_class=peperomia_class, neonpothos_class=neonpothos_class, avg_peperomia=avg_peperomia, last_water_peperomia=last_water_peperomia)
+
+@app.route('/plant-bot')
+def plant_bot():
+    return render_template('bot.html')
+
+
+@app.route('/bot-post', methods=['POST'])
+def bot_post():
+    pass
+# plantbot here
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000, debug=True)

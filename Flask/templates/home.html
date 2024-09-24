@@ -2,8 +2,10 @@
 
 {% block title %} {% endblock %}
 {% block content %} 
-<h1>Welcome to Plant Helper!</h1>
-            <p>Plant Helper is a website designed to assist you in taking care of your plants. Whether you're a beginner or an experienced gardener, we provide valuable information and tools to help you keep your plants healthy and thriving.</p>
-            <p>Explore our resources, browse plant care guides, and track your plant's progress with our interactive features. Let Plant Helper be your go-to companion in your plant care journey!</p>
-            <img src="{{ url_for('static', filename='futuristic_plant_device.webp') }}" alt="Image description">
+<div style="text-align: center;">
+    <h1>Welcome to Plant Helper!</h1>
+    <p>Plant Helper is a website designed to assist you in taking care of your plants. Whether you're a beginner or an experienced gardener, we provide valuable information and tools to help you keep your plants healthy and thriving.</p>
+    <p>Explore our resources, browse plant care guides, and track your plant's progress with our interactive features. Let Plant Helper be your go-to companion in your plant care journey!</p>
+    <img src="{{ url_for('static', filename='futuristic_plant_device.webp') }}" alt="Image description">
+</div>
 {% endblock %}

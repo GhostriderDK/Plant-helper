@@ -25,8 +25,8 @@ max_moisture = 4095
 soil.atten(ADC.ATTN_11DB)       # Full range: 3.3v
 soil.width(ADC.WIDTH_12BIT)     # Range 0 to 4095
 
-red_treshold = 30
-green_treshold = 80
+red_treshold = 50
+green_treshold = 75
 
 # WiFi config
 config['server'] = '########'  # Change to mqtt server ip
@@ -124,7 +124,7 @@ async def main(client):
             print("Published soil moisture: ", json_message)
             if mqtt_connected:
                 await client.publish('plant/peperomia/json', str(json_message), qos=1)
-            time.sleep(5)
+            time.sleep(600)
         except KeyboardInterrupt:
             red_led.off()
             green_led.off()

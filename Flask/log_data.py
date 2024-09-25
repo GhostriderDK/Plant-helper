@@ -33,7 +33,6 @@ def delete_peperomia_data():
         conn = sqlite3.connect("databases/data.db")
         cur = conn.cursor()
         
-        # Delete data points except the 5000 newest
         cur.execute("""
             DELETE FROM peperomia
             WHERE datetime NOT IN (

@@ -61,8 +61,8 @@ def get_current_pct_peperomia():
 def peperomia_watering(data_points=1000):
     try:
         timestamps, soil, time, info = get_peperomia_data(data_points)
-        increase_threshold = 10  # Define the threshold for increase
-        last_watering_timestamp = None  # Initialize to store the last detected watering timestamp
+        increase_threshold = 10  
+        last_watering_timestamp = None  
 
         for i in range(1, len(soil)):
             if soil[i] - soil[i - 1] > increase_threshold:

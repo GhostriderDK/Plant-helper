@@ -107,7 +107,7 @@ def overview_graph():
         neonpothos_level = "N/A"
         neonpothos_class = "wet"
     finally:
-        return render_template('overview-graph.html', peperomia_graph=peperomia_graph, peperomia_level=peperomia_level, neonpothos_level=neonpothos_level,
+        return render_template('overview_graph.html', peperomia_graph=peperomia_graph, peperomia_level=peperomia_level, neonpothos_level=neonpothos_level,
                             peperomia_class=peperomia_class, neonpothos_class=neonpothos_class, avg_peperomia=avg_peperomia, last_water_peperomia=last_water_peperomia)
 
 @app.route('/plant-bot')

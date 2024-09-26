@@ -1,4 +1,3 @@
-from transformers import pipeline
 from flask import Flask, render_template, request, jsonify     
 import backend as bk
 
@@ -7,7 +6,6 @@ app = Flask(__name__)
 
 datapoints = 20000
 num_ticks = 10
-chatbot = pipeline('text-generation', model='gpt2', device=-1, clean_up_tokenization_spaces=True)
 
 last_log = None
 

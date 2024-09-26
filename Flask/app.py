@@ -51,7 +51,7 @@ def overview():
         avg_peperomia = "N/A"
         last_water_peperomia = "N/A"
         neonpothos_level = "N/A"
-        neonpothos_class = "    
+        neonpothos_class = "wet"    
     finally:
         return render_template('overview.html', peperomia_level=peperomia_level, neonpothos_level=neonpothos_level,
                             peperomia_class=peperomia_class, neonpothos_class=neonpothos_class, avg_peperomia=avg_peperomia, last_water_peperomia=last_water_peperomia)

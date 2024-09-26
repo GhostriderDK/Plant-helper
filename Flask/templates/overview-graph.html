@@ -9,23 +9,21 @@
 <a class="navbar-brand" href="#"> <em>OverSeer</em> </a>
 {% endblock %}
 
-
 {% block nav %}
-<li class="nav-item px-2">
+<li class="nav-item px-2"></li>
     <a class="nav-link" href="{{ url_for('overview') }}" style="color: white;"><strong>Overview</strong></a>
 </li>
 
-<li class="nav-item px-2">
+<li class="nav-item px-2"></li>
     <a class="nav-link" href="{{ url_for('confighost') }}" style="color: white;"><strong>Configuration</strong></a>
 </li>
 {% endblock %}
-
 
 {% block content %}
 <h1 style="text-align: center;">{% block title %} Plant Helper Overview {% endblock %}</h1>
 <div class="container my-5" style="text-align: center;">
     <div class="row">
-        <div class="col-3">
+        <div class="col-lg-3 col-md-12">
             <h3 class="text-center">
                 Plant overview<br> 
             </h3>
@@ -68,9 +66,9 @@
                 </tbody>
             </table>
         </div>
-        <div class="col-9">
+        <div class="col-lg-9 col-md-12">
             <h3> Graph </h3>
-            <img class="img-fluid float-left" src='data:image/png;base64,{{peperomia_graph}}' style="border-radius: 20px; border: 2px solid #bebebe;"/>
+            <img class="img-fluid" src='data:image/png;base64,{{peperomia_graph}}' style="border-radius: 20px; border: 2px solid #bebebe;"/>
         </div>
     </div>
 </div>

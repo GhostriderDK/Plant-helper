@@ -24,11 +24,16 @@ def peperomia_data(datapoints, num_ticks):
         tick_positions = range(0, len(timestamps), max(1, len(timestamps) // num_ticks))
         ax.set_xticks(tick_positions)
         fig.patch.set_facecolor("white")
-        
+        #color bars for different moisture levels
+        ax.axhspan(70, 80, facecolor='blue', alpha=0.3)
+        ax.axhspan(50, 70, facecolor='green', alpha=0.3)
+        ax.axhspan(40, 50, facecolor='red', alpha=0.3)
+
         buf = BytesIO()
         fig.savefig(buf, format="png")
         data = base64.b64encode(buf.getbuffer()).decode("ascii")
         return data
+        
     except Exception as ex:
         print(ex)
         return None
@@ -58,7 +63,7 @@ def get_current_pct_peperomia():
         print(ex)
         return "N/A" 
 
-def peperomia_watering(data_points=1000):
+def peperomia_watering(data_points=5000):
     try:
         timestamps, soil, time, info = get_peperomia_data(data_points)
         increase_threshold = 10  

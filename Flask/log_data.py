@@ -26,8 +26,35 @@ def peperomia_message(client, userdata, message):
     except Exception as e:
         print(f"Another error occured: {e}")
     finally:
-        conn.close
+        conn.close()
+        #delete_peperomia_data()
 
+def delete_peperomia_data():
+    try:
+        conn = sqlite3.connect("databases/data.db")
+        cur = conn.cursor()
+        
+        # Delete data points except the 5000 newest
+        cur.execute("""
+            DELETE FROM peperomia
+            WHERE id NOT IN (
+                SELECT id
+                FROM peperomia
+                ORDER BY id DESC
+                LIMIT 5000
+            )
+        """)
+        
+        conn.commit()
+                    
+    except sqlite3.Error as sql_e:
+        print(f"sqlite error occurred: {sql_e}")
+        conn.rollback()
+
+    except Exception as e:
+        print(f"Another error occurred: {e}")
+    finally:
+        conn.close()
 
 def neon_pothos_message(client, userdata, message):
     query = """INSERT INTO peperomia (datetime, temperature, soil, info) VALUES(?, ?, ?, ?)"""
@@ -48,6 +75,34 @@ def neon_pothos_message(client, userdata, message):
 
     except Exception as e:
         print(f"Another error occured: {e}")
+    finally:
+        conn.close()
+        #delete_neon_pothos_data()
+
+def delete_neon_pothos_data():
+    try:
+        conn = sqlite3.connect("databases/data.db")
+        cur = conn.cursor()
+        
+        # Delete data points except the 5000 newest
+        cur.execute("""
+            DELETE FROM neonpothos
+            WHERE id NOT IN (
+                SELECT id
+                FROM neonpothos
+                ORDER BY id DESC
+                LIMIT 5000
+            )
+        """)
+        
+        conn.commit()
+                    
+    except sqlite3.Error as sql_e:
+        print(f"sqlite error occurred: {sql_e}")
+        conn.rollback()
+
+    except Exception as e:
+        print(f"Another error occurred: {e}")
     finally:
         conn.close()
 

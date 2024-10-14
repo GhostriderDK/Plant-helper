@@ -70,19 +70,21 @@ def get_air_quality_data(number_of_rows):
         humidity = []
         gas = []
         battery = []
+        air_quality_info = []
         try:
             conn = sqlite3.connect("databases/data.db")
             cur = conn.cursor()
             cur.execute(query)
             rows = cur.fetchmany(number_of_rows)
             for row in reversed(rows):
-                datetimes.append(row[0])
-                temperature.append(row[1])
-                pressure.append(row[2])
-                humidity.append(row[3])
-                gas.append(row[4])
-                battery.append(row[5]) 
-            return datetimes, temperature, pressure, humidity, gas, battery          
+                datetimes.append(row[1])
+                temperature.append(row[2])
+                pressure.append(row[3])
+                humidity.append(row[4])
+                gas.append(row[5])
+                air_quality_info.append(row[6])
+                battery.append(row[7]) 
+            return datetimes, temperature, pressure, humidity, gas, air_quality_info, battery          
         except sqlite3.Error as sql_e:
             print(f"sqlite error occurred: {sql_e}")
             conn.rollback()

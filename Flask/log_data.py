@@ -109,7 +109,7 @@ def delete_neon_pothos_data():
 
 #################### Smart home MQTT ####################
 
-def air_quality_message():
+def air_quality_message(client, userdata, message):
     query = """INSERT INTO air_quality (datetime, temperature, pressure, gas_resistance, air_quality_info, battery_level) VALUES(?, ?, ?, ?, ?, ?)"""
     now = datetime.now()
     now = now.strftime("%d/%m/%y %H:%M:%S")

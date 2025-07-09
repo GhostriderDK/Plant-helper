@@ -4,7 +4,7 @@ import backend as bk
 app = Flask(__name__)
 
 
-datapoints = 20000
+datapoints = 2000
 num_ticks = 10
 
 last_log = None
@@ -57,7 +57,7 @@ def overview():
 @app.route('/moisture-graph')
 def moisture_graph():
     try:
-        peperomia_graph = bk.peperomia_data(datapoints, num_ticks)
+        peperomia_graph = bk.peperomia_data(6000, num_ticks)
     except Exception as ex:
         print(ex)
         peperomia_graph = None
@@ -111,6 +111,18 @@ def overview_graph():
 @app.route('/plant-bot')
 def plant_bot():
     return render_template('bot.html')
+
+@app.route('/air-sensor')
+def air_sensor():
+    try:
+        air_quality_graph = bk.air_quality_data(6000, num_ticks)
+        current_data_gauges = bk.current_data()
+    except Exception as ex:
+        print(ex)
+        air_quality_graph = None
+        current_data_gauges = None
+    finally:    
+        return render_template('air_sensor.html', air_quality_graph=air_quality_graph, current_data_gauges=current_data_gauges)
 
 
 @app.route('/bot-post', methods=['POST'])

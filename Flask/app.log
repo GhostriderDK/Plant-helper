@@ -1,0 +1,89 @@
+2024-10-03 23:29:34,321 - __main__ - INFO - subscribe mqtt script running
+2024-10-03 23:29:34,326 - paho.mqtt.client - DEBUG - Sending CONNECT (u0, p0, wr0, wq0, wf0, c1, k60) client_id=b''
+2024-10-03 23:29:34,327 - paho.mqtt.client - DEBUG - Received CONNACK (0, 0)
+2024-10-03 23:29:34,327 - paho.mqtt.client - DEBUG - Sending SUBSCRIBE (d0, m1) [(b'plant/pothos/json', 0)]
+2024-10-03 23:29:34,328 - paho.mqtt.client - DEBUG - Sending SUBSCRIBE (d0, m2) [(b'plant/peperomia/json', 0)]
+2024-10-03 23:29:34,328 - paho.mqtt.client - DEBUG - Received SUBACK
+2024-10-03 23:29:34,328 - paho.mqtt.client - DEBUG - Received SUBACK
+2024-10-03 23:30:23,959 - paho.mqtt.client - DEBUG - Received PUBLISH (d0, q0, r0, m0), 'plant/peperomia/json', ...  (53 bytes)
+2024-10-03 23:30:23,978 - __main__ - INFO - Inserted peperomia data successfully
+2024-10-03 23:30:24,070 - __main__ - INFO - Deleted old peperomia data successfully
+2024-10-03 23:30:35,083 - paho.mqtt.client - DEBUG - Sending PINGREQ
+2024-10-03 23:30:35,085 - paho.mqtt.client - DEBUG - Received PINGRESP
+2024-10-03 23:31:35,153 - paho.mqtt.client - DEBUG - Sending PINGREQ
+2024-10-03 23:31:35,154 - paho.mqtt.client - DEBUG - Received PINGRESP
+2024-10-03 23:32:35,222 - paho.mqtt.client - DEBUG - Sending PINGREQ
+2024-10-03 23:32:35,224 - paho.mqtt.client - DEBUG - Received PINGRESP
+2024-10-03 23:33:35,292 - paho.mqtt.client - DEBUG - Sending PINGREQ
+2024-10-03 23:33:35,295 - paho.mqtt.client - DEBUG - Received PINGRESP
+2024-10-03 23:33:40,009 - __main__ - INFO - subscribe mqtt script running
+2024-10-03 23:33:40,014 - paho.mqtt.client - DEBUG - Sending CONNECT (u0, p0, wr0, wq0, wf0, c1, k60) client_id=b''
+2024-10-03 23:33:40,015 - paho.mqtt.client - DEBUG - Received CONNACK (0, 0)
+2024-10-03 23:33:40,015 - paho.mqtt.client - DEBUG - Sending SUBSCRIBE (d0, m1) [(b'plant/pothos/json', 0)]
+2024-10-03 23:33:40,016 - paho.mqtt.client - DEBUG - Sending SUBSCRIBE (d0, m2) [(b'plant/peperomia/json', 0)]
+2024-10-03 23:33:40,016 - paho.mqtt.client - DEBUG - Received SUBACK
+2024-10-03 23:33:40,017 - paho.mqtt.client - DEBUG - Received SUBACK
+2024-10-03 23:34:19,372 - paho.mqtt.client - DEBUG - Received PUBLISH (d0, q0, r0, m0), 'plant/peperomia/json', ...  (53 bytes)
+2024-10-03 23:34:19,390 - __main__ - INFO - Inserted peperomia data successfully
+2024-10-03 23:34:19,479 - __main__ - INFO - Deleted old peperomia data successfully
+2024-10-03 23:34:40,504 - paho.mqtt.client - DEBUG - Sending PINGREQ
+2024-10-03 23:34:40,505 - paho.mqtt.client - DEBUG - Received PINGRESP
+2024-10-03 23:35:09,993 - __main__ - INFO - subscribe mqtt script running
+2024-10-03 23:35:09,997 - paho.mqtt.client - DEBUG - Sending CONNECT (u0, p0, wr0, wq0, wf0, c1, k60) client_id=b''
+2024-10-03 23:35:09,998 - paho.mqtt.client - DEBUG - Received CONNACK (0, 0)
+2024-10-03 23:35:09,999 - paho.mqtt.client - DEBUG - Sending SUBSCRIBE (d0, m1) [(b'plant/pothos/json', 0)]
+2024-10-03 23:35:09,999 - paho.mqtt.client - DEBUG - Sending SUBSCRIBE (d0, m2) [(b'plant/peperomia/json', 0)]
+2024-10-03 23:35:10,000 - paho.mqtt.client - DEBUG - Received SUBACK
+2024-10-03 23:35:10,000 - paho.mqtt.client - DEBUG - Received SUBACK
+2024-10-03 23:35:45,546 - paho.mqtt.client - DEBUG - Received PUBLISH (d0, q0, r0, m0), 'plant/peperomia/json', ...  (53 bytes)
+2024-10-03 23:35:45,567 - __main__ - INFO - Inserted peperomia data successfully
+2024-10-03 23:36:10,597 - paho.mqtt.client - DEBUG - Sending PINGREQ
+2024-10-03 23:36:10,598 - paho.mqtt.client - DEBUG - Received PINGRESP
+2024-10-03 23:36:34,164 - __main__ - INFO - subscribe mqtt script running
+2024-10-03 23:36:34,168 - paho.mqtt.client - DEBUG - Sending CONNECT (u0, p0, wr0, wq0, wf0, c1, k60) client_id=b''
+2024-10-03 23:36:34,169 - paho.mqtt.client - DEBUG - Received CONNACK (0, 0)
+2024-10-03 23:36:34,170 - paho.mqtt.client - DEBUG - Sending SUBSCRIBE (d0, m1) [(b'plant/pothos/json', 0)]
+2024-10-03 23:36:34,170 - paho.mqtt.client - DEBUG - Sending SUBSCRIBE (d0, m2) [(b'plant/peperomia/json', 0)]
+2024-10-03 23:36:34,170 - paho.mqtt.client - DEBUG - Received SUBACK
+2024-10-03 23:36:34,171 - paho.mqtt.client - DEBUG - Received SUBACK
+2024-10-03 23:36:53,182 - __main__ - INFO - subscribe mqtt script running
+2024-10-03 23:36:53,186 - paho.mqtt.client - DEBUG - Sending CONNECT (u0, p0, wr0, wq0, wf0, c1, k60) client_id=b''
+2024-10-03 23:36:53,187 - paho.mqtt.client - DEBUG - Received CONNACK (0, 0)
+2024-10-03 23:36:53,188 - paho.mqtt.client - DEBUG - Sending SUBSCRIBE (d0, m1) [(b'plant/pothos/json', 0)]
+2024-10-03 23:36:53,188 - paho.mqtt.client - DEBUG - Sending SUBSCRIBE (d0, m2) [(b'plant/peperomia/json', 0)]
+2024-10-03 23:36:53,189 - paho.mqtt.client - DEBUG - Received SUBACK
+2024-10-03 23:36:53,189 - paho.mqtt.client - DEBUG - Received SUBACK
+2024-10-03 23:37:53,258 - paho.mqtt.client - DEBUG - Sending PINGREQ
+2024-10-03 23:37:53,259 - paho.mqtt.client - DEBUG - Received PINGRESP
+2024-10-03 23:38:53,328 - paho.mqtt.client - DEBUG - Sending PINGREQ
+2024-10-03 23:38:53,330 - paho.mqtt.client - DEBUG - Received PINGRESP
+2024-10-03 23:39:53,399 - paho.mqtt.client - DEBUG - Sending PINGREQ
+2024-10-03 23:39:53,400 - paho.mqtt.client - DEBUG - Received PINGRESP
+2024-10-03 23:40:53,470 - paho.mqtt.client - DEBUG - Sending PINGREQ
+2024-10-03 23:40:53,471 - paho.mqtt.client - DEBUG - Received PINGRESP
+2024-10-03 23:41:53,540 - paho.mqtt.client - DEBUG - Sending PINGREQ
+2024-10-03 23:41:53,542 - paho.mqtt.client - DEBUG - Received PINGRESP
+2024-10-03 23:42:53,610 - paho.mqtt.client - DEBUG - Sending PINGREQ
+2024-10-03 23:42:53,611 - paho.mqtt.client - DEBUG - Received PINGRESP
+2024-10-03 23:43:53,679 - paho.mqtt.client - DEBUG - Sending PINGREQ
+2024-10-03 23:43:53,681 - paho.mqtt.client - DEBUG - Received PINGRESP
+2024-10-03 23:44:16,662 - paho.mqtt.client - DEBUG - Received PUBLISH (d0, q0, r0, m0), 'plant/peperomia/json', ...  (53 bytes)
+2024-10-03 23:44:16,682 - __main__ - INFO - Inserted peperomia data successfully
+2024-10-03 23:44:16,760 - __main__ - INFO - Deleted old peperomia data successfully
+2024-10-03 23:55:00,423 - __main__ - ERROR - sqlite error occurred: Cannot add a PRIMARY KEY column
+2024-10-03 23:56:14,237 - __main__ - INFO - Created new peperomia table with id column successfully
+2024-10-03 23:56:14,256 - __main__ - INFO - Copied data to new peperomia table successfully
+2024-10-03 23:56:14,257 - __main__ - INFO - Dropped old peperomia table successfully
+2024-10-03 23:56:14,259 - __main__ - INFO - Renamed new peperomia table to old table name successfully
+2024-10-03 23:56:14,260 - __main__ - INFO - Created new neon_pothos table with id column successfully
+2024-10-03 23:56:14,260 - __main__ - ERROR - sqlite error occurred: no such table: neon_pothos
+2024-10-03 23:58:56,775 - __main__ - ERROR - sqlite error occurred: table peperomia_new already exists
+2024-10-03 23:59:35,061 - __main__ - INFO - Dropped existing peperomia_new table
+2024-10-03 23:59:35,078 - __main__ - INFO - Created new peperomia table with id column successfully
+2024-10-03 23:59:35,097 - __main__ - INFO - Copied data to new peperomia table successfully
+2024-10-03 23:59:35,098 - __main__ - INFO - Dropped old peperomia table successfully
+2024-10-03 23:59:35,100 - __main__ - INFO - Renamed new peperomia table to old table name successfully
+2024-10-03 23:59:35,101 - __main__ - INFO - Created new neonpothos table with id column successfully
+2024-10-03 23:59:35,101 - __main__ - INFO - Copied data to new neonpothos table successfully
+2024-10-03 23:59:35,101 - __main__ - INFO - Dropped old neonpothos table successfully
+2024-10-03 23:59:35,102 - __main__ - INFO - Renamed new neonpothos table to old table name successfully

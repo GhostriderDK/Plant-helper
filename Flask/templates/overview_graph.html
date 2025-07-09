@@ -32,7 +32,7 @@
             <table class="table table-striped text-start" style="border-radius: 20px;">
                 <thead>
                     <tr>
-                        <th colspan="2">Watermelon Peperomia</th>
+                        <th colspan="2">Pilea</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -61,6 +61,25 @@
                     </tr>
                     <tr>
                         <td>Last watering <strong>{{ last_water_neonpothos }}</strong></td>
+                        <td class="text-end"></td>
+                    </tr>
+                </tbody>
+                <thead>
+                    <tr>
+                        <th colspan="2">Aloe Vera</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Level: <strong>{{ peperomia_level }}</strong></td>
+                        <td class="text-end"><span class="status-indicator {{ peperomia_class }}"></span></td>
+                    </tr>
+                    <tr>
+                        <td>current moisture pct:  <strong>{{ avg_peperomia }} %</strong></td>
+                        <td class="text-end"></td>
+                    </tr>
+                    <tr>
+                        <td>Last watering <strong>{{ last_water_peperomia }}</strong></td>
                         <td class="text-end"></td>
                     </tr>
                 </tbody>

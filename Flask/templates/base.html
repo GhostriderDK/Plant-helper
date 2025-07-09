@@ -13,7 +13,7 @@
     html, body {
       margin: 0; padding: 0; overflow: hidden;
       height: 100vh; width: 100vw;
-      background: #f0f0f011;
+      background: #f0f0f0e7;
     }
     canvas {
       display: block;
@@ -23,7 +23,7 @@
       height: 100vh;
       pointer-events: none;
       z-index: -1;
-      background: #f0f0f069;
+      background: #f0f0f0;
     }
   </style>
 
@@ -52,7 +52,7 @@
             <a class="nav-link" href="{{ url_for('moisture_graph') }}" style="color: white;"><strong>Watermelon Peperomia</strong></a>
           </li>
           <li class="nav-item px-2">
-            <a class="nav-link" href="{{ url_for('plant_bot') }}" style="color: white;"><strong>Plant bot</strong></a>
+            <a class="nav-link" href="{{ url_for('air_sensor') }}" style="color: white;"><strong>Air sensor</strong></a>
           </li>
         </ul>
       </div>
@@ -79,7 +79,7 @@
     const ctx = canvas.getContext('2d');
 
     let width, height;
-    const dotSpacing = 30;
+    const dotSpacing = 20;
     let dots = [];
 
     const mouse = { x: -1000, y: -1000 };
@@ -123,12 +123,12 @@
         let dy = dot.y - mouse.y;
         let dist = Math.sqrt(dx * dx + dy * dy);
 
-        const avoidRadius = 100;
+        const avoidRadius = 75;
 
         if (dist < avoidRadius) {
           const force = (avoidRadius - dist) / avoidRadius;
           const angle = Math.atan2(dy, dx);
-          const strength = force * 50;
+          const strength = force * 10;
 
           dot.vx += Math.cos(angle) * strength;
           dot.vy += Math.sin(angle) * strength;
@@ -137,7 +137,7 @@
         dot.vx *= 0.85;
         dot.vy *= 0.85;
 
-        const springStrength = 0.01;
+        const springStrength = 0.05;
         dot.vx += (dot.baseX - dot.x) * springStrength;
         dot.vy += (dot.baseY - dot.y) * springStrength;
 

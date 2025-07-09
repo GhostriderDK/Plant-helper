@@ -27,7 +27,7 @@ def peperomia_message(client, userdata, message):
         print(f"Another error occured: {e}")
     finally:
         conn.close()
-        #delete_peperomia_data()
+        delete_peperomia_data()
 
 def delete_peperomia_data():
     try:
@@ -57,11 +57,11 @@ def delete_peperomia_data():
         conn.close()
 
 def neon_pothos_message(client, userdata, message):
-    query = """INSERT INTO peperomia (datetime, temperature, soil, info) VALUES(?, ?, ?, ?)"""
+    query = """INSERT INTO neonpothos (datetime, temperature, soil, info) VALUES(?, ?, ?, ?)"""
     now = datetime.now()
     now = now.strftime("%d/%m/%y %H:%M:%S")
     neon_pothos_data = json.loads(message.payload.decode())
-    data = (now, neon_pothos_data['soil'], neon_pothos_data['timestamp'], neon_pothos_data['level'])
+    data = (now, neon_pothos_data['temperature'], neon_pothos_data['soil'], neon_pothos_data['level'])
     
     try:
         conn = sqlite3.connect("databases/data.db")
@@ -74,10 +74,10 @@ def neon_pothos_message(client, userdata, message):
         conn.rollback()
 
     except Exception as e:
-        print(f"Another error occured: {e}")
+        print(f"Another error occurred: {e}")
     finally:
         conn.close()
-        #delete_neon_pothos_data()
+        delete_neon_pothos_data()
 
 def delete_neon_pothos_data():
     try:
@@ -105,6 +105,7 @@ def delete_neon_pothos_data():
         print(f"Another error occurred: {e}")
     finally:
         conn.close()
+      
 
 
 topic_function_map = {

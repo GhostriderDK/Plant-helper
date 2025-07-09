@@ -19,9 +19,9 @@ set_led_brightness(led_humidity, 5)
 set_led_brightness(led_gas, 5)
 
 # WiFi config
-config['server'] = '192.168.1.221'  # Change to mqtt server ip
-config['ssid'] = '###########' # Change to wifi ssid
-config['wifi_pw'] = '############' # Change to wifi password
+config['server'] = '77.33.140.232'  # Change to mqtt server ip
+config['ssid'] = 'AirTies_Air4960_VCHY' # Change to wifi ssid
+config['wifi_pw'] = 'pdcfcp9983' # Change to wifi password
 
 # Other config
 info = None
@@ -133,7 +133,7 @@ async def main(client):
             print("Published air quality data: ", json_message)
             if mqtt_connected:
                 await client.publish('air_quality/roam/json', str(json_message), qos=1)
-            await asyncio.sleep(60)  # Sleep for 60 seconds
+            await asyncio.sleep(5)  # Sleep for 60 seconds
         except KeyboardInterrupt:
             break
         except Exception as e:
@@ -147,3 +147,4 @@ try:
     asyncio.run(main(client))
 finally:
     client.close()  # Prevent LmacRxBlk:1 errors
+

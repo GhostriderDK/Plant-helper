@@ -9,15 +9,35 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
 
-    {% block head %}
-    {% endblock %}
+  <style>
+    html, body {
+      margin: 0; padding: 0; overflow: hidden;
+      height: 100vh; width: 100vw;
+      background: #f0f0f011;
+    }
+    canvas {
+      display: block;
+      position: fixed;
+      top: 0; left: 0;
+      width: 100vw;
+      height: 100vh;
+      pointer-events: none;
+      z-index: -1;
+      background: #f0f0f069;
+    }
+  </style>
+
+  {% block head %}
+  {% endblock %}
 
   <title>{% block title %} {% endblock %} - Plant Helper</title>
 </head>
 
 <body>
+  <canvas id="dotCanvas">Your browser does not support Canvas.</canvas>
+
   <nav class="shadow-lg p-3 mb-5 bg-dark rounded navbar navbar-expand-lg navbar-dark bg-dark">
-    <div class="container-fluid ">
+    <div class="container-fluid">
       <a class="navbar-brand" href="{{ url_for('home') }}"> <em>Plant Helper</em> </a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
         aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -29,41 +49,116 @@
             <a class="nav-link" href="{{ url_for('overview_graph') }}" style="color: white;"><strong>Overview</strong></a>
           </li>  
           <li class="nav-item px-2">
-                <a class="nav-link" href="{{ url_for('moisture_graph') }}" style="color: white;"><strong>Watermelon Peperomia</strong></a>
+            <a class="nav-link" href="{{ url_for('moisture_graph') }}" style="color: white;"><strong>Watermelon Peperomia</strong></a>
           </li>
           <li class="nav-item px-2">
             <a class="nav-link" href="{{ url_for('plant_bot') }}" style="color: white;"><strong>Plant bot</strong></a>
           </li>
-        
         </ul>
-        </div>
       </div>
     </div>
   </nav>
- 
-          
-          {% block content %}
-            
-          {% endblock %}
-        
+
+  {% block content %}
+  {% endblock %}
 
   <footer class="footer mt-auto py-3 bg-light">
     <div class="container">
-      <footer class="footer mt-auto py-3 bg-light">
-        <div class="container">
-          <span class="text-muted small">KEA IT-Teknolog - GhostriderDK</span>
-          <p class="text-center">© 2024 Plant Helper. All rights reserved.</p>
-        </div>
-      </footer>
+      <span class="text-muted small">KEA IT-Teknolog - GhostriderDK</span>
+      <p class="text-center">© 2024 Plant Helper. All rights reserved.</p>
     </div>
   </footer>
 
   <!-- Optional JavaScript -->
-
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj"
     crossorigin="anonymous"></script>
 
-</body>
+  <script>
+    const canvas = document.getElementById('dotCanvas');
+    const ctx = canvas.getContext('2d');
 
+    let width, height;
+    const dotSpacing = 30;
+    let dots = [];
+
+    const mouse = { x: -1000, y: -1000 };
+
+    function init() {
+      width = window.innerWidth;
+      height = window.innerHeight;
+
+      canvas.width = width;
+      canvas.height = height;
+
+      dots = [];
+      for (let y = dotSpacing / 2; y < height; y += dotSpacing) {
+        for (let x = dotSpacing / 2; x < width; x += dotSpacing) {
+          dots.push({
+            x: x,
+            y: y,
+            baseX: x,
+            baseY: y,
+            vx: 0,
+            vy: 0,
+            radius: 4
+          });
+        }
+      }
+    }
+
+    window.addEventListener('resize', () => {
+      init();
+    });
+
+    init();
+
+    function animate() {
+      ctx.clearRect(0, 0, width, height);
+      ctx.fillStyle = '#f0f0f0';
+      ctx.fillRect(0, 0, width, height);
+
+      for (let dot of dots) {
+        let dx = dot.x - mouse.x;
+        let dy = dot.y - mouse.y;
+        let dist = Math.sqrt(dx * dx + dy * dy);
+
+        const avoidRadius = 100;
+
+        if (dist < avoidRadius) {
+          const force = (avoidRadius - dist) / avoidRadius;
+          const angle = Math.atan2(dy, dx);
+          const strength = force * 50;
+
+          dot.vx += Math.cos(angle) * strength;
+          dot.vy += Math.sin(angle) * strength;
+        }
+
+        dot.vx *= 0.85;
+        dot.vy *= 0.85;
+
+        const springStrength = 0.01;
+        dot.vx += (dot.baseX - dot.x) * springStrength;
+        dot.vy += (dot.baseY - dot.y) * springStrength;
+
+        dot.x += dot.vx;
+        dot.y += dot.vy;
+
+        ctx.beginPath();
+        ctx.fillStyle = '#444';
+        ctx.arc(dot.x, dot.y, dot.radius, 0, Math.PI * 2);
+        ctx.fill();
+      }
+
+      requestAnimationFrame(animate);
+    }
+
+    window.addEventListener('mousemove', e => {
+      mouse.x = e.clientX;
+      mouse.y = e.clientY;
+    });
+
+    animate();
+  </script>
+</body>
 </html>
